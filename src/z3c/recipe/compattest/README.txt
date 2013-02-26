@@ -55,10 +55,10 @@ declared a (superfluous) test dependency on ``zope.dottedname``, which is
 picked up:
 
 >>> try:
-...     print 'start'
+...     print('start')
 ...     cat('parts', 'compattest-z3c.recipe.compattest', 'site-packages', 'site.py')
 ... except IOError:
-...     print 'start'
+...     print('start')
 ...     # When the tests are run from a virtualenv, the bin scripts are created
 ...     # in a different location.
 ...     cat('bin', 'compattest-z3c.recipe.compattest')
@@ -76,7 +76,7 @@ dependencies are also picked up, for instance zc.buildout:
 ... recipe = z3c.recipe.compattest
 ... include-dependencies = z3c.recipe.compattest
 ... """)
->>> print 'start', system(buildout)
+>>> print('start', system(buildout))
 start...
 Generated script '/sample-buildout/bin/compattest-zc.buildout'.
 ...
@@ -103,7 +103,7 @@ the ``exclude`` option:
 ... include-dependencies = z3c.recipe.compattest
 ... exclude = zc.buildout
 ... """)
->>> print 'start', system(buildout)
+>>> print('start', system(buildout))
 start...
 Generated script '/sample-buildout/bin/compattest'...
 
@@ -161,10 +161,10 @@ that depends on zope2 < 2.12:
 ... """)
 >>> ignore = system(buildout)
 >>> try:
-...     print 'start'
+...     print('start')
 ...     cat('parts', 'compattest-z3c.recipe.compattest', 'site-packages', 'site.py')
 ... except IOError:
-...     print 'start'
+...     print('start')
 ...     # When the tests are run from a virtualenv, the bin scripts are created
 ...     # in a different location.
 ...     cat('bin', 'compattest-z3c.recipe.compattest')

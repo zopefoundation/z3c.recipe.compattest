@@ -1,18 +1,22 @@
-import StringIO
 import os.path
 import subprocess
 import sys
 import time
 import pickle
 
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
+
 
 def usage():
-    print """
+    print("""
 usage: %s [OPTIONS]
 
 All given options will be passed to each test runner. To know which
 options you can use, refer to the test runner documentation.
-""" % sys.argv[0]
+""" % sys.argv[0])
 
 windoze = sys.platform.startswith('win')
 
@@ -23,7 +27,7 @@ class Job(object):
         self.script = script
         self.args = args
         self.name = os.path.basename(script)
-        self.output = StringIO.StringIO()
+        self.output = StringIO()
         self.exitcode = None
 
     def start(self):
@@ -52,7 +56,7 @@ class Job(object):
         else:
             # We're not done, so just get some
             data = self.process.stdout.readline()
-        self.output.write(data.replace('\r\n', '\n'))
+        self.output.write(data.replace(b'\r\n', b'\n').decode('utf-8'))
 
 
 def main(max_jobs, *scripts, **options):
@@ -69,7 +73,7 @@ def main(max_jobs, *scripts, **options):
     # the slowest tests first.
     stat_file_name = os.path.join(os.path.expanduser('~'), '.zope.teststats')
     try:
-        stat_file = open(stat_file_name, 'r')
+        stat_file = open(stat_file_name, 'rb')
     except IOError:
         stats = {}
     else:
@@ -92,27 +96,27 @@ def main(max_jobs, *scripts, **options):
             completed.append(job)
             running.remove(job)
             if job.exitcode:
-                print "%s failed with:" % job.name
-                print job.output.getvalue()
+                print("%s failed with:" % job.name)
+                print(job.output.getvalue())
 
         while (len(running) < max_jobs) and scripts:
             script = scripts.pop(0)
             job = Job(script, sys.argv[1:])
-            print "Running %s" % job.name
+            print("Running %s" % job.name)
             job.start()
             running.append(job)
 
     # Result output
     failures = [job for job in completed if job.exitcode]
-    print "%d failure(s)." % len(failures)
+    print("%d failure(s)." % len(failures))
     for job in failures:
-        print "-", job.name
+        print("- %s" % job.name)
 
     # Store statistics
     for job in completed:
         stats[job.name] = job.end - job.start
     try:
-        stat_file = open(stat_file_name, 'w')
+        stat_file = open(stat_file_name, 'wb')
     except IOError:
         # Statistics aren't that important. Just ignore that.
         pass
