@@ -6,12 +6,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='z3c.recipe.compattest',
-    version = version,
+    version=version,
     author='Grok Contributors',
     author_email='grok-dev@zope.org',
-    description='Buildout recipe to create testrunners for testing compatibility with other packages',
+    description='Buildout recipe to create testrunners for testing '
+                'compatibility with other packages',
     url='http://pypi.python.org/pypi/z3c.recipe.compattest',
-    long_description= (
+    long_description=(
         '.. contents::'
         + '\n\n'
         + open('CHANGES.txt').read()
@@ -41,14 +42,14 @@ setup(
     # zope.dottedname is just used as a dummy package to demonstrate things
     # with, it's not actually imported
     extras_require=dict(test=[
-          'zope.dottedname',
-          'zope.testing',
-          'manuel',
-          'six',
-        ]),
+        'zope.dottedname',
+        'zope.testing',
+        'manuel',
+        'six',
+    ]),
     entry_points = {
         'zc.buildout': ['default = z3c.recipe.compattest.recipe:Recipe'],
-        },
+    },
     include_package_data = True,
     zip_safe = False,
 )
