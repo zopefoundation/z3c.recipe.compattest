@@ -1,4 +1,4 @@
-version = '0.14dev'
+version = '1.0dev'
 
 import os
 from setuptools import setup, find_packages
@@ -22,7 +22,7 @@ setup(
         + '\n\n' +
         open(os.path.join(
             'src', 'z3c', 'recipe', 'compattest', 'README.txt')).read()),
-    keywords = "zope3 setuptools egg kgs",
+    keywords = "zope setuptools egg kgs",
     classifiers = [
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
@@ -35,14 +35,16 @@ setup(
     namespace_packages=['z3c', 'z3c.recipe'],
     install_requires=[
         'setuptools',
-        'zc.buildout >= 1.5.1',
-        'zc.recipe.testrunner >= 1.4.0',
-        ],
+        'zc.buildout >= 2.0.0',
+        'zc.recipe.testrunner >= 2.0.0',
+    ],
     # zope.dottedname is just used as a dummy package to demonstrate things
     # with, it's not actually imported
     extras_require=dict(test=[
           'zope.dottedname',
           'zope.testing',
+          'manuel',
+          'six',
         ]),
     entry_points = {
         'zc.buildout': ['default = z3c.recipe.compattest.recipe:Recipe'],

@@ -27,12 +27,13 @@ def DocFileSuite(*args, **kw):
         # environment
         zc.buildout.testing.install('zc.recipe.testrunner', test)
         zc.buildout.testing.install('zc.recipe.egg', test)
-        zc.buildout.testing.install('z3c.recipe.scripts', test)
         zc.buildout.testing.install('zope.testing', test)
         zc.buildout.testing.install('zope.testrunner', test)
         zc.buildout.testing.install('zope.interface', test)
         zc.buildout.testing.install('zope.exceptions', test)
         zc.buildout.testing.install('zope.dottedname', test)
+        zc.buildout.testing.install('manuel', test)
+        zc.buildout.testing.install('six', test)
 
     def tearDown(test):
         zc.buildout.testing.buildoutTearDown(test)
@@ -47,6 +48,6 @@ def DocFileSuite(*args, **kw):
         normalize_exe,
         normalize_setuptools,
         python_case_normalizer,
-        ])
+    ])
 
     return doctest.DocFileSuite(*args, **kw)

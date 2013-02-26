@@ -13,20 +13,20 @@ failures.
 
     >>> # Re-use zc.buildout internals in order to handle both windows
     >>> # and other environments.
-    >>> from zc.buildout.easy_install import _write_script
+    >>> from zc.buildout.easy_install import _create_script
     >>> ok_script = os.path.join(sample_buildout, 'test-ok')
-    >>> _ = _write_script(ok_script, '''\
+    >>> _ = _create_script('''\
     ... #!%s
     ... import time
     ... time.sleep(1)
-    ... print 'ok' ''' % sys.executable, 'script')
+    ... print 'ok' ''' % sys.executable, ok_script)
 
     >>> failure_script = os.path.join(sample_buildout, 'test-failure')
-    >>> _ = _write_script(failure_script, '''\
+    >>> _ = _create_script('''\
     ... #!%s
     ... import time
     ... time.sleep(1)
-    ... raise SystemError('Fail!') ''' % sys.executable, 'script')
+    ... raise SystemError('Fail!') ''' % sys.executable, failure_script)
 
     >>> from z3c.recipe.compattest.runner import main
     >>> main(1, ok_script, failure_script, no_exit_code=True)
