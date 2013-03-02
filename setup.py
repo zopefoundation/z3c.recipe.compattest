@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-__version__ = '1.0dev'
+__version__ = '1.0'
 
 setup(
     name='z3c.recipe.compattest',

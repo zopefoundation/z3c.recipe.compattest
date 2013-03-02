@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-1.0 (unreleased)
+1.0 (2013-03-02)
 ================
 
 - Depend on buildout 2 and zc.recipe.testrunner 2.
