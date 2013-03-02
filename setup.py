@@ -1,21 +1,20 @@
-version = '1.0dev'
-
 import os
 from setuptools import setup, find_packages
 
+__version__ = '1.0dev'
 
 setup(
     name='z3c.recipe.compattest',
-    version=version,
-    author='Grok Contributors',
-    author_email='grok-dev@zope.org',
+    version=__version__,
+    author='Zope Foundation and Contributors',
+    author_email='zope-dev@zope.org',
     description='Buildout recipe to create testrunners for testing '
                 'compatibility with other packages',
     url='http://pypi.python.org/pypi/z3c.recipe.compattest',
     long_description=(
         '.. contents::'
         + '\n\n'
-        + open('CHANGES.txt').read()
+        + open('CHANGES.rst').read()
         + '\n\n'
         '======================\n'
         'Detailed Documentation\n'
@@ -23,8 +22,8 @@ setup(
         + '\n\n' +
         open(os.path.join(
             'src', 'z3c', 'recipe', 'compattest', 'README.txt')).read()),
-    keywords = "zope setuptools egg kgs",
-    classifiers = [
+    keywords="zope setuptools egg kgs",
+    classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python',
@@ -32,7 +31,7 @@ setup(
         'Framework :: Zope3'],
     license='ZPL 2.1',
     packages=find_packages('src'),
-    package_dir = {'': 'src'},
+    package_dir={'': 'src'},
     namespace_packages=['z3c', 'z3c.recipe'],
     install_requires=[
         'setuptools',
@@ -47,9 +46,9 @@ setup(
         'manuel',
         'six',
     ]),
-    entry_points = {
+    entry_points={
         'zc.buildout': ['default = z3c.recipe.compattest.recipe:Recipe'],
     },
-    include_package_data = True,
-    zip_safe = False,
+    include_package_data=True,
+    zip_safe=False,
 )
