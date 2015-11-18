@@ -19,7 +19,7 @@ failures.
     ... #!%s
     ... import time
     ... time.sleep(1)
-    ... print('ok' ''' % sys.executable, ok_script))
+    ... print('ok') ''' % sys.executable, ok_script)
 
     >>> failure_script = os.path.join(sample_buildout, 'test-failure')
     >>> _ = _create_script('''\
