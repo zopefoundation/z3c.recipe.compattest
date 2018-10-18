@@ -24,7 +24,7 @@ setup(
             'src', 'z3c', 'recipe', 'compattest', 'README.txt')).read()),
     keywords="zope setuptools egg kgs",
     classifiers=[
-        'Framework :: Zope3',
+        'Framework :: Zope :: 3',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
         'Operating System :: OS Independent',
