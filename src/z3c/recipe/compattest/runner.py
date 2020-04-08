@@ -56,9 +56,6 @@ class Job(object):
             # We're done, get it all
             data = self.process.stdout.read()
             # Close the pipes and cleanup.
-            # for f in self.process.stdin, self.process.stdout, self.process.stderr:
-            #     if f is not None:
-            #         f.close()
             self.process.communicate()
             self.process = None
         else:
