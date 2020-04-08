@@ -1,13 +1,25 @@
 language: python
 python:
-    - 2.6
     - 2.7
-    - 3.2
-    - 3.3
+    - 3.5
+    - 3.6
+    - 3.7
+    - 3.8
+    - pypy
+    - pypy3
+env:
+   global:
+     - ZOPE_INTERFACE_STRICT_IRO: 1
+     - COVERAGE_PROCESS_START: .coveragerc
 install:
-    - python bootstrap.py
-    - bin/buildout
+    - pip install -U pip setuptools
+    - pip install -U coverage coveralls
+    - pip install -U -e .[test]
 script:
-    - bin/test -v1
+    - coverage run -m zope.testrunner --test-path=src
+after_success:
+  - coverage combine
+  - coveralls
 notifications:
     email: false
+cache: pip
