@@ -53,10 +53,9 @@ class Job(object):
             self.exitcode = self.process.poll()
         if self.exitcode is not None and self.process is not None:
             self.end = time.time()
-            # We're done, get it all
-            data = self.process.stdout.read()
-            # Close the pipes and cleanup.
-            self.process.communicate()
+            # We're done, get all remaining output, and
+            # close the pipes.
+            data = self.process.communicate()[0]
             self.process = None
         else:
             # We're not done, so just get some
