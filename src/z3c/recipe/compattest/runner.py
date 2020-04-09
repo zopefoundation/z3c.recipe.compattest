@@ -53,9 +53,14 @@ class Job(object):
             self.exitcode = self.process.poll()
         if self.exitcode is not None and self.process is not None:
             self.end = time.time()
-            # We're done, get all remaining output, and
-            # close the pipes.
-            data = self.process.communicate()[0]
+            # We're done, get all remaining output. Note that we don't
+            # depend on `communicate()[0]` here to provide what we
+            # need, there have been buffering issues combining direct
+            # reads with using that method on PyPy3-7.1.
+            # (https://travis-ci.org/github/zopefoundation/z3c.recipe.compattest/jobs/672912967)
+            data = self.process.stdout.read()
+            # Close the pipes and cleanup.
+            self.process.communicate()
             self.process = None
         else:
             # We're not done, so just get some
