@@ -1,10 +1,15 @@
-=======
-CHANGES
-=======
+=========
+ CHANGES
+=========
 
-1.0.1 (unreleased)
+1.1.0 (unreleased)
 ==================
 
+- Drop support for Python 2.6, 3.2, 3.3 and 3.4.
+
+- Add support for Python 3.5, 3.6, 3.7, 3.8, PyPy2 and PyPy3.
+
+- Fix file descriptor leaks. See `issue 1 <https://github.com/zopefoundation/z3c.recipe.compattest/issues/1>`_.
 
 1.0 (2013-03-02)
 ================

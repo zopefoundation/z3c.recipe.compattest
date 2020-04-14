@@ -18,7 +18,7 @@ normalize_setuptools = (
 python_case_normalizer = (re.compile('[pP]ython'), 'python')
 
 
-def DocFileSuite(*args, **kw):
+def DocFileSuite(paths, **kw):
     def setUp(test):
         zc.buildout.testing.buildoutSetUp(test)
         zc.buildout.testing.install_develop('z3c.recipe.compattest', test)
@@ -50,4 +50,4 @@ def DocFileSuite(*args, **kw):
         python_case_normalizer,
     ])
 
-    return doctest.DocFileSuite(*args, **kw)
+    return doctest.DocFileSuite(*paths, **kw)
