@@ -8,7 +8,7 @@ def read(path):
 
 setup(
     name='z3c.recipe.compattest',
-    version='1.1.0.dev0',
+    version='1.1.0',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     description='Buildout recipe to create testrunners for testing '

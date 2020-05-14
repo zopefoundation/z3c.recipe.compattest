@@ -2,7 +2,7 @@
  CHANGES
 =========
 
-1.1.0 (unreleased)
+1.1.0 (2020-05-14)
 ==================
 
 - Drop support for Python 2.6, 3.2, 3.3 and 3.4.
