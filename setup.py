@@ -1,15 +1,14 @@
 import os
 from setuptools import setup, find_packages
 
-__version__ = '1.1.0.dev0'
 
-def read(*path):
-    with open(os.path.join(*path)) as f:
+def read(path):
+    with open(os.path.join(path)) as f:
         return f.read()
 
 setup(
     name='z3c.recipe.compattest',
-    version=__version__,
+    version='1.1.0.dev0',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.org',
     description='Buildout recipe to create testrunners for testing '
