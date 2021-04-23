@@ -16,6 +16,7 @@ All given options will be passed to each test runner. To know which
 options you can use, refer to the test runner documentation.
 """ % sys.argv[0])
 
+
 windoze = sys.platform.startswith('win')
 
 
@@ -68,7 +69,6 @@ class Job(object):
         self.output.write(data.replace(b'\r\n', b'\n').decode('utf-8'))
 
 
-
 def main(max_jobs, *scripts, **options):
     argv = sys.argv[1:]
     if '-h' in argv or '--help' in argv:
@@ -94,7 +94,7 @@ def main(max_jobs, *scripts, **options):
         default_time = 0
     scripts.sort(
         key=lambda package: -stats.get(os.path.basename(package), default_time)
-        )
+    )
 
     # Main loop for controlling test runs
     while scripts or running:

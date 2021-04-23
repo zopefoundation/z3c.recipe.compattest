@@ -6,6 +6,7 @@ def read(path):
     with open(os.path.join(path)) as f:
         return f.read()
 
+
 setup(
     name='z3c.recipe.compattest',
     version='1.1.1.dev0',
@@ -14,6 +15,11 @@ setup(
     description='Buildout recipe to create testrunners for testing '
                 'compatibility with other packages',
     url='https://github.com/zopefoundation/z3c.recipe.compattest',
+    project_urls={
+        'Issue Tracker': ('https://github.com/zopefoundation/'
+                          'z3c.recipe.compattest/issues'),
+        'Sources': 'https://github.com/zopefoundation/z3c.recipe.compattest',
+    },
     long_description=(
         read('README.rst')
         + '\n\n'
@@ -33,6 +39,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
@@ -47,8 +54,8 @@ setup(
     ],
     extras_require={
         'test': [
-            # zope.dottedname is just used as a dummy package to demonstrate things
-            # with, it's not actually imported
+            # zope.dottedname is just used as a dummy package to demonstrate
+            # things with, it's not actually imported
             'zope.dottedname',
             'zope.testing',
             'manuel',

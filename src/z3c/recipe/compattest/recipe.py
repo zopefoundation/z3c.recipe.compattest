@@ -21,7 +21,7 @@ class Recipe(object):
         self.name = name
         self.options = options
 
-        if not 'max_jobs' in options:
+        if 'max_jobs' not in options:
             options['max_jobs'] = '1'
 
         self.include = string2list(self.options.get('include', ''), [])
@@ -55,13 +55,15 @@ class Recipe(object):
         for package_name in wanted_packages:
             ws = self._working_set(package_name)
             package = ws.find(pkg_resources.Requirement.parse(package_name))
-            # Installing arbitrary extras here leads to problems in reproducibility.
+            # Installing arbitrary extras here leads to problems in
+            # reproducibility.
             # In particular, setuptools[tests] causes a huge dependency tree
             # to be brought in.
-            extras = '[' + ','.join(ex for ex in package.extras if ex in ['test']) + ']'
+            extras = '[{}]'.format(
+                ','.join(ex for ex in package.extras if ex in ['test']))
             if package_name == 'zc.buildout':
-                # Installing the test dependencies for zc.buildout is also a problem,
-                # they don't all provide test extras
+                # Installing the test dependencies for zc.buildout is also a
+                # problem, they don't all provide test extras
                 extras = ''
             options = self.testrunner_options.copy()
             options['eggs'] = package_name + extras
@@ -77,7 +79,7 @@ class Recipe(object):
     def _install_run_script(self, wanted_packages):
         bindir = self.buildout['buildout']['bin-directory']
         runners = ['%s-%s' % (self.name, package) for package
-                        in wanted_packages]
+                   in wanted_packages]
         runners = [repr(os.path.join(bindir, runner)) for runner in runners]
 
         return zc.buildout.easy_install.scripts(
