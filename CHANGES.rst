@@ -5,7 +5,7 @@
 1.1.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Add support for Python 3.9.
 
 
 1.1.0 (2020-05-14)
