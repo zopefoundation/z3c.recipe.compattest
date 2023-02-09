@@ -18,7 +18,8 @@ def test_suite():
                     pass
 
             suite.addTest(
-                unittest.makeSuite(SkippedDocTests))  # pragma: no cover
+                unittest.defaultTestLoader.loadTestsFromTestCase(
+                    SkippedDocTests))  # pragma: no cover
             return suite  # pragma: no cover
 
     readme = os.path.join(here, 'README.rst')

@@ -13,7 +13,7 @@ setup(
     name='z3c.recipe.compattest',
     version='2.0.dev0',
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     description='Buildout recipe to create testrunners for testing '
                 'compatibility with other packages',
     url='https://github.com/zopefoundation/z3c.recipe.compattest',
@@ -59,7 +59,6 @@ setup(
             'zope.dottedname',
             'zope.testing',
             'manuel',
-            'six',
         ],
     },
     entry_points={
@@ -67,7 +66,5 @@ setup(
     },
     include_package_data=True,
     zip_safe=False,
-    python_requires=','.join([
-        '>=3.7',
-    ]),
+    python_requires='>=3.7',
 )

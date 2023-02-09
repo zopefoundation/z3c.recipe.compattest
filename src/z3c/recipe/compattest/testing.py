@@ -34,7 +34,6 @@ def DocFileSuite(paths, **kw):
         zc.buildout.testing.install('zope.exceptions', test)
         zc.buildout.testing.install('zope.dottedname', test)
         zc.buildout.testing.install('manuel', test)
-        zc.buildout.testing.install('six', test)
 
     def tearDown(test):
         zc.buildout.testing.buildoutTearDown(test)

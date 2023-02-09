@@ -16,7 +16,7 @@ def string2list(string, default):
 RUNNER_PREFIX = 'runner-'
 
 
-class Recipe(object):
+class Recipe:
 
     def __init__(self, buildout, name, options):
         self.buildout = buildout
@@ -74,13 +74,13 @@ class Recipe(object):
                 options['extra-paths'] = self.extra_paths
 
             recipe = zc.recipe.testrunner.TestRunner(
-                self.buildout, '%s-%s' % (self.name, package_name), options)
+                self.buildout, f'{self.name}-{package_name}', options)
             installed.extend(recipe.install())
         return installed
 
     def _install_run_script(self, wanted_packages):
         bindir = self.buildout['buildout']['bin-directory']
-        runners = ['%s-%s' % (self.name, package) for package
+        runners = ['{}-{}'.format(self.name, package) for package
                    in wanted_packages]
         runners = [repr(os.path.join(bindir, runner)) for runner in runners]
 
@@ -88,8 +88,8 @@ class Recipe(object):
             [(self.script, 'z3c.recipe.compattest.runner', 'main')],
             self._working_set('z3c.recipe.compattest'),
             self.buildout['buildout']['executable'],
-            bindir, arguments='%s, %s' % (self.options['max_jobs'],
-                                          ', '.join(runners)))
+            bindir, arguments='{}, {}'.format(self.options['max_jobs'],
+                                              ', '.join(runners)))
 
     def _find_dependencies(self):
         result = []
