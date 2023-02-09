@@ -1,10 +1,10 @@
 from __future__ import print_function
+
 import os.path
+import pickle
 import subprocess
 import sys
 import time
-import pickle
-
 from io import StringIO
 
 

@@ -1,6 +1,8 @@
 import os
-import pkg_resources
 import re
+
+import pkg_resources
+
 import zc.buildout.easy_install
 import zc.recipe.egg
 import zc.recipe.testrunner
