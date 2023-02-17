@@ -1,10 +1,8 @@
-from __future__ import print_function
 import os.path
+import pickle
 import subprocess
 import sys
 import time
-import pickle
-
 from io import StringIO
 
 
@@ -20,7 +18,7 @@ options you can use, refer to the test runner documentation.
 windoze = sys.platform.startswith('win')
 
 
-class Job(object):
+class Job:
     exitcode = None
     process = None
     began = 0
@@ -54,11 +52,7 @@ class Job(object):
             self.exitcode = self.process.poll()
         if self.exitcode is not None and self.process is not None:
             self.end = time.time()
-            # We're done, get all remaining output. Note that we don't
-            # depend on `communicate()[0]` here to provide what we
-            # need, there have been buffering issues combining direct
-            # reads with using that method on PyPy3-7.1.
-            # (https://travis-ci.org/github/zopefoundation/z3c.recipe.compattest/jobs/672912967)
+            # We're done, get all remaining output.
             data = self.process.stdout.read()
             # Close the pipes and cleanup.
             self.process.communicate()
@@ -85,7 +79,7 @@ def main(max_jobs, *scripts, **options):
     try:
         with open(stat_file_name, 'rb') as stat_file:
             stats = pickle.load(stat_file)
-    except IOError:
+    except OSError:
         stats = {}
 
     if stats:
@@ -128,7 +122,7 @@ def main(max_jobs, *scripts, **options):
     try:
         with open(stat_file_name, 'wb') as stat_file:
             pickle.dump(stats, stat_file)
-    except IOError:
+    except OSError:
         # Statistics aren't that important. Just ignore that.
         pass
 

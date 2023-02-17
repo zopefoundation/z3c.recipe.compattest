@@ -1,5 +1,7 @@
 import os
-from setuptools import setup, find_packages
+
+from setuptools import find_packages
+from setuptools import setup
 
 
 def read(path):
@@ -9,9 +11,9 @@ def read(path):
 
 setup(
     name='z3c.recipe.compattest',
-    version='1.1.1.dev0',
+    version='2.0.dev0',
     author='Zope Foundation and Contributors',
-    author_email='zope-dev@zope.org',
+    author_email='zope-dev@zope.dev',
     description='Buildout recipe to create testrunners for testing '
                 'compatibility with other packages',
     url='https://github.com/zopefoundation/z3c.recipe.compattest',
@@ -32,14 +34,12 @@ setup(
         'License :: OSI Approved :: Zope Public License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
@@ -59,7 +59,6 @@ setup(
             'zope.dottedname',
             'zope.testing',
             'manuel',
-            'six',
         ],
     },
     entry_points={
@@ -67,12 +66,5 @@ setup(
     },
     include_package_data=True,
     zip_safe=False,
-    python_requires=', '.join([
-        '>=2.7',
-        '!=3.0.*',
-        '!=3.1.*',
-        '!=3.2.*',
-        '!=3.3.*',
-        '!=3.4.*',
-    ]),
+    python_requires='>=3.7',
 )
