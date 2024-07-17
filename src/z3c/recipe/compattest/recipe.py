@@ -80,7 +80,7 @@ class Recipe:
 
     def _install_run_script(self, wanted_packages):
         bindir = self.buildout['buildout']['bin-directory']
-        runners = ['{}-{}'.format(self.name, package) for package
+        runners = [f'{self.name}-{package}' for package
                    in wanted_packages]
         runners = [repr(os.path.join(bindir, runner)) for runner in runners]
 
