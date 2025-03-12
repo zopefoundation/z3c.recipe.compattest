@@ -2,7 +2,7 @@
  CHANGES
 =========
 
-2.1 (unreleased)
+3.0 (unreleased)
 ================
 
 - Add support for Python 3.13.
@@ -12,6 +12,8 @@
 - Add support for Python 3.12.
 
 - Drop support for Python 3.7.
+
+- Drop support for ``include-dependencies`` option.
 
 
 2.0 (2023-02-20)

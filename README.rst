@@ -15,8 +15,6 @@ No further configuration is required, but you can set the following options:
 
 - ``include``: list of packages to include (whitespace-separated)
   (default: empty)
-- ``include-dependencies``: list of packages to include *including* their
-  direct dependencies.  (default: empty)
 - ``exclude``: packages matching any regex in this list will be excluded
   (default: empty)
 - ``script``: the name of the runner script (defaults to the part name)
@@ -29,6 +27,7 @@ No further configuration is required, but you can set the following options:
 ... [compattest]
 ... recipe = z3c.recipe.compattest
 ... include = z3c.recipe.compattest
+...           zc.buildout
 ... """)
 
 >>> 'Installing compattest' in system(buildout)
@@ -44,6 +43,7 @@ script (called `test-compat` by default) that will run all of them:
 - buildout
 - compattest
 - compattest-z3c.recipe.compattest
+- compattest-zc.buildout
 
 >>> cat('bin', 'compattest')
 #!...py...
@@ -67,44 +67,20 @@ find these dependencies):
 start
 ...zope.dottedname...
 
-If we use ``include-dependencies`` instead of just ``include``, its direct
-dependencies are also picked up, for instance zc.buildout:
 
->>> write('buildout.cfg', """
-... [buildout]
-... parts = compattest
-...
-... [compattest]
-... recipe = z3c.recipe.compattest
-... include-dependencies = z3c.recipe.compattest
-... """)
->>> print('start' + system(buildout))
-start...
-...
-Generated script '/sample-buildout/bin/compattest-zc.buildout'.
-...
-
-
-
-All our direct dependencies have a test script now:
-
->>> ls('bin')
-- buildout
-- compattest
-- compattest-z3c.recipe.compattest
-- compattest-zc.buildout
-- compattest-zc.recipe.testrunner
-
-And if you want to exclude one of the automatically included dependencies, use
+And if you want to exclude one of the packages listed under ``include``, use
 the ``exclude`` option:
 
 >>> write('buildout.cfg', """
 ... [buildout]
 ... parts = compattest
+... eggs = z3c.recipe.compattest
+...        zc.recipe.testrunner
+...        zc.buildout
 ...
 ... [compattest]
 ... recipe = z3c.recipe.compattest
-... include-dependencies = z3c.recipe.compattest
+... include = ${buildout:eggs}
 ... exclude = zc.buildout
 ... """)
 >>> print('start' + system(buildout))
