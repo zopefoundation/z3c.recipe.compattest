@@ -11,7 +11,7 @@ def read(path):
 
 setup(
     name='z3c.recipe.compattest',
-    version='2.1.dev0',
+    version='3.0.dev0',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
     description='Buildout recipe to create testrunners for testing '
@@ -35,15 +35,15 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
-    license='ZPL 2.1',
+    license='ZPL-2.1',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['z3c', 'z3c.recipe'],
@@ -66,5 +66,5 @@ setup(
     },
     include_package_data=True,
     zip_safe=False,
-    python_requires='>=3.8',
+    python_requires='>=3.9',
 )
