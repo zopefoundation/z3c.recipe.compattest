@@ -1,6 +1,5 @@
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -44,9 +43,6 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
     license='ZPL-2.1',
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
-    namespace_packages=['z3c', 'z3c.recipe'],
     install_requires=[
         'setuptools',
         'zc.buildout >= 2.0.0',
