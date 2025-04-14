@@ -1,6 +1,5 @@
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -11,7 +10,7 @@ def read(path):
 
 setup(
     name='z3c.recipe.compattest',
-    version='3.1.dev0',
+    version='4.0.dev0',
     author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
     description='Buildout recipe to create testrunners for testing '
@@ -44,9 +43,6 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
     license='ZPL-2.1',
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
-    namespace_packages=['z3c', 'z3c.recipe'],
     install_requires=[
         'setuptools',
         'zc.buildout >= 2.0.0',
