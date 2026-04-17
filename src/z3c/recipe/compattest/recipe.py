@@ -1,7 +1,6 @@
+import importlib.metadata
 import os
 import re
-
-import pkg_resources
 
 import zc.buildout.easy_install
 import zc.recipe.egg
@@ -53,14 +52,16 @@ class Recipe:
     def _install_testrunners(self, wanted_packages):
         installed = []
         for package_name in wanted_packages:
-            ws = self._working_set(package_name)
-            package = ws.find(pkg_resources.Requirement.parse(package_name))
+            dist = importlib.metadata.distribution(package_name)
             # Installing arbitrary extras here leads to problems in
             # reproducibility.
             # In particular, setuptools[tests] causes a huge dependency tree
             # to be brought in.
             extras = '[{}]'.format(
-                ','.join(ex for ex in package.extras if ex in ['test']))
+                ','.join(
+                    ex for ex in
+                    (dist.metadata.get_all('Provides-Extra') or [])
+                    if ex in ['test']))
             if package_name == 'zc.buildout':
                 # Installing the test dependencies for zc.buildout is also a
                 # problem, they don't all provide test extras

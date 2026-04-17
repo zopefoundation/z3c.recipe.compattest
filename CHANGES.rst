@@ -11,6 +11,8 @@
 
 - Drop support for Python 3.9.
 
+- Replace ``pkg_resources`` usage in ``recipe.py`` with ``importlib.metadata``.
+
 
 4.0 (2025-04-14)
 ================
