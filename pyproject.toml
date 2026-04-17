@@ -1,12 +1,60 @@
-# Generated from:
-# https://github.com/zopefoundation/meta/tree/master/config/buildout-recipe
-
+# Generated with zope.meta (https://zopemeta.readthedocs.io/) from:
+# https://github.com/zopefoundation/meta/tree/master/src/zope/meta/buildout-recipe
 [build-system]
 requires = [
-    "setuptools == 75.8.2",
+    "setuptools >= 78.1.1,< 81",
     "wheel",
 ]
 build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "z3c.recipe.compattest"
+version = "4.1.dev0"
+description = "Buildout recipe to create testrunners for testing compatibility with other packages"
+license = "ZPL-2.1"
+classifiers = [
+    "Framework :: Zope :: 3",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dynamic = ["readme"]
+requires-python = ">=3.10"
+authors = [
+    {name = "Zope Foundation and contributors",email = "zope-dev@zope.dev"},
+]
+maintainers = [
+    {name = "Plone Foundation and contributors",email = "zope-dev@zope.dev"},
+]
+dependencies = [
+    "zc.buildout >= 2.0.0",
+    "zc.recipe.testrunner >= 2.0.0",
+]
+keywords = ["zope", "setuptools", "egg", "kgs"]
+
+[project.entry-points."zc.buildout"]
+default = "z3c.recipe.compattest.recipe:Recipe"
+
+[project.optional-dependencies]
+test = [
+    "zope.dottedname",
+    "zope.testing",
+    "manuel",
+]
+
+[project.urls]
+Source = "https://github.com/zopefoundation/z3c.recipe.compattest"
+Issues = "https://github.com/zopefoundation/z3c.recipe.compattest/issues"
+Changelog = "https://raw.githubusercontent.com/zopefoundation/z3c.recipe.compattest/master/CHANGES.rst"
 
 [tool.coverage.run]
 branch = true
@@ -38,3 +86,7 @@ source = [
     ".tox/*/lib/python*/site-packages/",
     ".tox/pypy*/site-packages/",
 ]
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "CHANGES.rst"]}
+
