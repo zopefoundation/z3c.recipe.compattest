@@ -10,7 +10,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "z3c.recipe.compattest"
-version = "4.1"
+version = "4.2.dev0"
 description = "Buildout recipe to create testrunners for testing compatibility with other packages"
 license = "ZPL-2.1"
 classifiers = [
