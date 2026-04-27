@@ -2,8 +2,8 @@
  CHANGES
 =========
 
-4.2 (unreleased)
-================
+4.1.1 (2026-04-27)
+==================
 
 - Revert replacement of ``pkg_resources`` with ``importlib.metadata`` in
   ``recipe.py`` as ``importlib.metadata.distribution()`` cannot find packages
