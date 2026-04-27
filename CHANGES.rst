@@ -5,7 +5,9 @@
 4.2 (unreleased)
 ================
 
-- Nothing changed yet.
+- Revert replacement of ``pkg_resources`` with ``importlib.metadata`` in
+  ``recipe.py`` as ``importlib.metadata.distribution()`` cannot find packages
+  managed by buildout.
 
 
 4.1 (2026-04-17)
